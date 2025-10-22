@@ -23,3 +23,9 @@ struct QuickActionFeedback: Identifiable, Equatable {
     let title: String
     let message: String
 }
+
+extension QuickActionFeedback {
+    init(action: QuickAction) {
+        self.init(title: action.title, message: action.placeholderMessage)
+    }
+}
