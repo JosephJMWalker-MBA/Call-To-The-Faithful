@@ -112,6 +112,12 @@ struct CallToTheFaithfulWidget: Widget {
 
 private extension ScheduledService {
     static var placeholder: ScheduledService {
-        ScheduledService(title: "Sunday Mass", date: Calendar.current.date(byAdding: .hour, value: 2, to: Date()) ?? Date())
+        let placeholderMass = MassTime(
+            weekday: .sunday,
+            time: DateComponents(hour: 9, minute: 30),
+            label: "Sunday Mass"
+        )
+        let date = Calendar.current.date(byAdding: .hour, value: 2, to: Date()) ?? Date()
+        return ScheduledService(kind: .mass(placeholderMass), date: date)
     }
 }

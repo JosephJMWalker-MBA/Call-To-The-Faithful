@@ -7,6 +7,12 @@ enum SchedulePreset: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    static var allPresets: [SchedulePreset] { Array(allCases) }
+
+    var title: String { rawValue }
+
+    var details: String { description }
+
     var description: String {
         switch self {
         case .parish:
@@ -37,6 +43,55 @@ enum SchedulePreset: String, CaseIterable, Identifiable {
             return DateComponents(hour: 6, minute: 0)
         case .commuter:
             return DateComponents(hour: 18, minute: 0)
+        }
+    }
+
+    var masses: [MassTime] {
+        switch self {
+        case .parish:
+            return [
+                MassTime(
+                    weekday: .sunday,
+                    time: DateComponents(hour: 9, minute: 0),
+                    label: "Sunday Mass"
+                ),
+                MassTime(
+                    weekday: .saturday,
+                    time: DateComponents(hour: 17, minute: 0),
+                    label: "Vigil Mass"
+                )
+            ]
+        case .monastery:
+            return [
+                MassTime(
+                    weekday: .monday,
+                    time: DateComponents(hour: 6, minute: 30),
+                    label: "Morning Office"
+                ),
+                MassTime(
+                    weekday: .wednesday,
+                    time: DateComponents(hour: 6, minute: 30),
+                    label: "Community Mass"
+                ),
+                MassTime(
+                    weekday: .friday,
+                    time: DateComponents(hour: 6, minute: 30),
+                    label: "First Friday"
+                )
+            ]
+        case .commuter:
+            return [
+                MassTime(
+                    weekday: .tuesday,
+                    time: DateComponents(hour: 19, minute: 0),
+                    label: "Weeknight Mass"
+                ),
+                MassTime(
+                    weekday: .sunday,
+                    time: DateComponents(hour: 18, minute: 0),
+                    label: "Evening Service"
+                )
+            ]
         }
     }
 }

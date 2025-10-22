@@ -22,11 +22,19 @@ struct HomeView: View {
             Section("Next Service") {
                 if let nextService = scheduleManager.nextService {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(nextService.mass.label ?? nextService.mass.weekday.name)
+                        Text(nextService.title)
                             .font(.headline)
+
+                        if let subtitle = nextService.subtitle {
+                            Text(subtitle)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+
                         Text(dateFormatter.string(from: nextService.date))
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
+
                         Text(timeFormatter.string(from: nextService.date))
                             .font(.title3)
                             .bold()
