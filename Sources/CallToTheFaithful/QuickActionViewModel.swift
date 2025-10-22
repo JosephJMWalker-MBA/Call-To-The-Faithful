@@ -19,20 +19,14 @@ final class QuickActionViewModel: ObservableObject {
         if action.requiresConfirmation {
             pendingConfirmation = action
         } else {
-            feedback = QuickActionFeedback(
-                title: action.title,
-                message: action.placeholderMessage
-            )
+            feedback = QuickActionFeedback(action: action)
         }
     }
 
     func confirmPendingAction() {
         guard let action = pendingConfirmation else { return }
         pendingConfirmation = nil
-        feedback = QuickActionFeedback(
-            title: action.title,
-            message: action.placeholderMessage
-        )
+        feedback = QuickActionFeedback(action: action)
     }
 
     func cancelPendingAction() {

@@ -11,7 +11,7 @@ The watch app boots directly into a **Quick Actions** list that highlights the m
 - **Update Profile** – indicates that parish profile import is on the roadmap.
 - **Manage Volunteers** – confirms with the user before showing a placeholder message.
 
-Each item currently surfaces a short message after selection so testers understand that the action is a no-op while we wire up the real integrations.
+Each item currently surfaces a short message after selection so testers understand that the action is a no-op while we wire up the real integrations. Confirm-required actions (`Ring Bells`, `Manage Volunteers`) present a lightweight confirmation dialog before showing their placeholder message so early testers can experience the intended flow without side effects.
 
 ## Follow-up tasks
 
